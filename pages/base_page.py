@@ -9,7 +9,7 @@ class BasePage:
         self.base_url = 'https://demoqa.com/'
 
     def visit(self):  # создаем метод перехода на страницу
-        return self.driver.get(self.base_url)  # возвращает переход через .get
+        return self.driver.get(self.base_url)  # возвращает переход через .get()
 
     def find_element(self, locator):  # создаем метод поиска элемента, метод принимает локатор
         time.sleep(3)

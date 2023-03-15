@@ -13,5 +13,5 @@ def test_icon_exist(browser):
 
     demo_page.visit()  # вызов метода перехода на страницу
     demo_page.click_on_the_icon()  # вызов метода клика по локатору
-    assert demo_page.equal_url()  # проверка URL через вызов метода equal_url
-    assert demo_page.exist_icon()  # проверка наличия эл-та через вызов метода exist_icon
+    assert demo_page.equal_url()  # проверка URL через вызов метода equal_url()
+    assert demo_page.exist_icon()  # проверка наличия эл-та через вызов метода exist_icon()
