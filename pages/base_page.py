@@ -1,19 +1,19 @@
-from selenium.webdriver.common.by import By
-import time
-
-
 class BasePage:
 
-    def __init__(self, driver):
+    def __init__(self, driver, base_url):
         self.driver = driver
-        self.base_url = 'https://demoqa.com/'
+        self.base_url = base_url
 
-    def visit(self):  # создаем метод перехода на страницу
+    def visit(self):  # метод перехода на страницу
         return self.driver.get(self.base_url)  # возвращает переход через .get()
 
-    def find_element(self, locator):  # создаем метод поиска элемента, метод принимает локатор
-        time.sleep(3)
-        return self.driver.find_element(By.CSS_SELECTOR, locator)  # метод возвращает поиск элемента через CSS_SELECTOR
+    # def find_element(self, locator): перенесли в components.py
 
-    def get_url(self):  # создаем метод который возвращает текущий URL
+    def get_url(self):  # возвращает текущий URL
         return self.driver.current_url
+
+    def equal_url(self):  # сравнивает текущий URL с заданной строкой
+        if self.get_url() == self.base_url:
+            return True
+        else:
+            return False
