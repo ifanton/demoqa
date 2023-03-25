@@ -9,7 +9,13 @@ class ElementsPage(BasePage):
         self.text = text
         super().__init__(driver, self.base_url)
 
-        self.text_area = WebElement(driver, locator='div.col-12.mt-4.col-md-6',
-                                    text='Please select an item from left to start practice.')
+        self.text_Please = WebElement(driver, locator='div.col-12.mt-4.col-md-6',
+                                      text='Please select an item from left to start practice.')
+        self.text_Elements = WebElement(driver, locator='div.pattern-backgound.playgound-header > div',
+                                        text='Elements')
+        self.icon = WebElement(driver, locator='#app > header > a')
+        self.btn_sidebar_first = WebElement(driver, locator='div:nth-child(1) > span > div')
+        self.btn_sidebar_first_textbox = WebElement(driver, locator='div:nth-child(1) > div > ul > #item-0 > span')
+        self.btn_sidebar_first_check_box = WebElement(driver, locator='div:nth-child(1) > div > ul > #item-1')
 
     # def equal_url(self): перенесли в класс BasePage

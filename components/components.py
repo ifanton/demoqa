@@ -30,5 +30,7 @@ class WebElement:
     def equal_text(self):
         if self.get_text() == self.text:
             return True
-        else:
-            return False
+        return False
+
+    def visible(self):  # проверка видимости элемента на странице
+        return self.find_element().is_displayed()

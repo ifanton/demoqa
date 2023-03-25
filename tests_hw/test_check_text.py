@@ -11,4 +11,15 @@ def test_check_text(browser):
     assert demo_page.footer.equal_text()
 
     demo_page.btn_elements.click()
-    assert elements_page.text_area.equal_text()
+    assert elements_page.text_Please.equal_text()
+
+
+def test_page_elements(browser):
+    elements_page = ElementsPage(browser)
+
+    elements_page.visit()
+    assert elements_page.text_Elements.equal_text()
+
+    assert elements_page.icon.exist()
+    assert elements_page.btn_sidebar_first.exist()
+    assert elements_page.btn_sidebar_first_textbox.exist()
