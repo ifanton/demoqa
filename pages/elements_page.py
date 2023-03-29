@@ -4,10 +4,12 @@ from pages.base_page import BasePage
 
 class ElementsPage(BasePage):
 
-    def __init__(self, driver, text=''):
+    def __init__(self, driver):
         self.base_url = 'https://demoqa.com/elements'
-        self.text = text
         super().__init__(driver, self.base_url)
+        self.pageData = {
+            'title': 'DEMOQA'
+        }
 
         self.text_Please = WebElement(driver, locator='div.col-12.mt-4.col-md-6',
                                       text='Please select an item from left to start practice.')
@@ -17,5 +19,4 @@ class ElementsPage(BasePage):
         self.btn_sidebar_first = WebElement(driver, locator='div:nth-child(1) > span > div')
         self.btn_sidebar_first_textbox = WebElement(driver, locator='div:nth-child(1) > div > ul > #item-0 > span')
         self.btn_sidebar_first_check_box = WebElement(driver, locator='div:nth-child(1) > div > ul > #item-1')
-
-    # def equal_url(self): перенесли в класс BasePage
+        self.btns_first_menu = WebElement(driver, locator='div:nth-child(1) > div > ul > li')
