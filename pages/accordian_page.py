@@ -4,10 +4,12 @@ from components.components import WebElement
 
 class AccordianPage(BasePage):
 
-    def __init__(self, driver, text=''):
+    def __init__(self, driver):
         self.base_url = 'https://demoqa.com/accordian'
-        self.text = text
         super().__init__(driver, self.base_url)
+        self.pageData = {
+            'title': 'DEMOQA'
+        }
 
         self.text_What_Lorem = WebElement(driver, locator='#section1Content > p')
         self.header_What_Lorem = WebElement(driver, locator='#section1Heading')
