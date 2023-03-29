@@ -1,6 +1,6 @@
 from selenium.common import NoSuchElementException
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-import time
 
 
 class WebElement:
@@ -10,16 +10,17 @@ class WebElement:
         self.driver = driver
         self.text = text
 
-    def click(self):  # клик по элементу
-        self.find_element().click()
-
     def find_element(self):  # поиск элемента, метод принимает локатор
-        time.sleep(3)
         return self.driver.find_element(By.CSS_SELECTOR, self.locator)  # метод возвращает поиск через CSS_SELECTOR
 
     def find_elements(self):  # поиск сразу нескольких элементов, метод принимает локатор
-        time.sleep(3)
         return self.driver.find_elements(By.CSS_SELECTOR, self.locator)  # метод возвращает поиск через CSS_SELECTOR
+
+    def click(self):  # клик по элементу
+        self.find_element().click()
+
+    def click_force(self):
+        self.driver.execute_script('arguments[0].click();', self.find_element())
 
     def check_count_elements(self, count: int):
         if len(self.find_elements()) == count:
@@ -48,4 +49,14 @@ class WebElement:
         self.find_element().send_keys(text)
 
     def clear(self):
-        self.find_element().clear()
+        self.find_element().send_keys(Keys.CONTROL + 'a')
+        self.find_element().send_keys(Keys.DELETE)
+
+    def get_dom_attribute(self, name: str):
+        value = self.find_element().get_dom_attribute(name)
+
+        if value is None:
+            return False
+        if len(value) > 0:
+            return value
+        return True
