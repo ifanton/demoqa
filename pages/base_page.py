@@ -1,3 +1,6 @@
+import logging
+
+
 class BasePage:
 
     def __init__(self, driver, base_url):
@@ -28,4 +31,9 @@ class BasePage:
         else:
             return False
 
-    # def find_element(self, locator): перенесли в components.py
+    def alert(self):  # проверяет открыто окно алерта или нет, возвращает получение объекта окна
+        try:
+            return self.driver.switch_to.alert
+        except Exception as ex:
+            logging.log(1, ex)
+            return False
