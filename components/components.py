@@ -2,6 +2,8 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
+import logging
+
 
 class WebElement:
 
@@ -53,7 +55,7 @@ class WebElement:
         self.find_element().send_keys(Keys.CONTROL + 'a')
         self.find_element().send_keys(Keys.DELETE)
 
-    def get_dom_attribute(self, name: str):
+    def get_dom_attribute(self, name: str):  # метод для проверки атрибута у элемента
         value = self.find_element().get_dom_attribute(name)
 
         if value is None:
@@ -81,3 +83,11 @@ class WebElement:
 
     def scroll_to_element(self):  # прокрутка страницы до элемента
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);", self.find_element())
+
+    def check_css(self, style, value=''):  # возвращает True, если у эл-та есть стиль с указанным значением
+        try:
+            self.driver.execute_script(f"arguments[0].style.{style} = '{value}';", self.find_element())
+        except Exception as ex:
+            logging.log(1, ex)
+            return False
+        return True

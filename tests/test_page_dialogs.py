@@ -26,3 +26,4 @@ def test_navigation_modal(browser):
     time.sleep(2)
     browser.set_window_size(1000, 1000)
     time.sleep(2)
+

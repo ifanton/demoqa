@@ -1,5 +1,7 @@
 import logging
 
+from components.components import WebElement
+
 
 class BasePage:
 
@@ -7,13 +9,15 @@ class BasePage:
         self.driver = driver
         self.base_url = base_url
 
+        self.meta = WebElement(driver, locator='head > meta')
+
     def visit(self):  # метод перехода на страницу
         return self.driver.get(self.base_url)  # возвращает переход через .get()
 
-    def back(self):   # метод перехода на страницу назад
+    def back(self):  # метод перехода на страницу назад
         self.driver.back()
 
-    def forward(self):   # метод перехода на страницу вперед
+    def forward(self):  # метод перехода на страницу вперед
         self.driver.forward()
 
     def refresh(self):  # метод обновления страницы

@@ -12,6 +12,7 @@ class AlertsPage(BasePage):
         }
 
         self.btn_alert = WebElement(driver, locator='#alertButton')
+        self.btn_5sec_alert = WebElement(driver, locator='#timerAlertButton')
         self.btn_alert_confirm = WebElement(driver, locator='#confirmButton')
         self.btn_alert_prompt = WebElement(driver, locator='#promtButton')
         self.text_selection_result = WebElement(driver, locator='#confirmResult')

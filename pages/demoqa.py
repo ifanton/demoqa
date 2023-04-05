@@ -9,6 +9,7 @@ class DemoQa(BasePage):  # родительский класс BasePage из ф�
         super().__init__(driver, self.base_url)  # super прокидывает URL в родительский класс
         self.pageData = {
             'title': 'DEMOQA'
+
         }
 
         self.icon = WebElement(driver, locator='#app > header > a')

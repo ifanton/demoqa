@@ -31,3 +31,4 @@ class WebtablePage(BasePage):
         self.table_nav_btn_next = WebElement(driver, locator='div.-next > button')
         self.table_nav_page_counter = WebElement(driver, locator='span.-pageInfo > span')
         self.table_nav_page_index = WebElement(driver, locator='input[type=number]')
+        self.table_header_firstName = WebElement(driver, 'div.rt-thead.-header > div > div:nth-child(1)')
