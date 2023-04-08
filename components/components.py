@@ -2,8 +2,6 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
-import logging
-
 
 class WebElement:
 
@@ -85,9 +83,11 @@ class WebElement:
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);", self.find_element())
 
     def check_css(self, style, value=''):  # возвращает True, если у эл-та есть стиль с указанным значением
-        try:
-            self.driver.execute_script(f"arguments[0].style.{style} = '{value}';", self.find_element())
-        except Exception as ex:
-            logging.log(1, ex)
-            return False
-        return True
+        return self.find_element().value_of_css_property(style) == value
+
+        # try:
+        #     self.driver.execute_script(f"arguments[0].style.{style} = '{value}';", self.find_element())
+        # except Exception as ex:
+        #     logging.log(1, ex)
+        #     return False
+        # return True

@@ -13,12 +13,13 @@ def test_drag_n_drop(browser):
     action_chains = ActionChains(browser)   # создание объекта для выполнения действия drug`n`drop
 
     droppable_page.visit()
+    assert droppable_page.droppable_element.check_css('backgroundColor', 'rgba(0, 0, 0, 0)')
     action_chains.drag_and_drop(
         droppable_page.draggable_element.find_element(),  # element
         droppable_page.droppable_element.find_element()   # target
     ).perform()
-    assert droppable_page.droppable_element.check_css('backgroundColor', 'steelblue')
+    assert droppable_page.droppable_element.check_css('backgroundColor', 'rgba(70, 130, 180, 1)')
     action_chains.drag_and_drop_by_offset(droppable_page.draggable_element.find_element(), -150, 0).perform()
     time.sleep(1)
-    assert droppable_page.droppable_element.check_css('backgroundColor', 'steelblue')
+    assert droppable_page.droppable_element.check_css('backgroundColor', 'rgba(70, 130, 180, 1)')
     time.sleep(1)

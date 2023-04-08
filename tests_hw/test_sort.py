@@ -1,6 +1,7 @@
 import allure
 import time
-from selenium.webdriver import Keys
+
+from selenium.webdriver.common.by import By
 
 from pages.webtable_page import WebtablePage
 
@@ -10,14 +11,16 @@ from pages.webtable_page import WebtablePage
 @allure.severity(allure.severity_level.NORMAL)
 def test_webtable_sort(browser):
     webtable_page = WebtablePage(browser)
+    text_sort = ['First Name', 'Last Name', 'Age', 'Email', 'Salary', 'Department']
 
     webtable_page.visit()
-    assert webtable_page.table_header_firstName.get_dom_attribute('class') == 'rt-th rt-resizable-header ' \
-                                                                              '-cursor-pointer'  # нет сортировки
-    webtable_page.table_header_firstName.click()
-    assert webtable_page.table_header_firstName.get_dom_attribute('class') == 'rt-th rt-resizable-header -sort-asc ' \
-                                                                              '-cursor-pointer'  # по возрастанию
-    webtable_page.table_header_firstName.click()
-    assert webtable_page.table_header_firstName.get_dom_attribute('class') == 'rt-th rt-resizable-header -sort-desc ' \
-                                                                              '-cursor-pointer'  # по убыванию
-    # и так далее с заголовками каждого столбца
+    for text in text_sort:
+        browser.find_element(By.XPATH, f"//*[.='{text}']").click()
+        assert browser.find_element(By.XPATH, f"//*[.='{text}']").get_dom_attribute('class') == 'rt-th rt-resizable' \
+                                                                                                '-header -sort-asc ' \
+                                                                                                '-cursor-pointer'
+        browser.find_element(By.XPATH, f"//*[.='{text}']").click()
+        assert browser.find_element(By.XPATH, f"//*[.='{text}']").get_dom_attribute('class') == 'rt-th rt-resizable' \
+                                                                                                '-header -sort-desc ' \
+                                                                                                '-cursor-pointer'
+        time.sleep(1)
